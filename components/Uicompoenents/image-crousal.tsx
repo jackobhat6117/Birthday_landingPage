@@ -4,65 +4,66 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const images = [
   {
-    src: "/assets/image4.jpeg?height=400&width=600",
+    src: "/assets/image4.jpeg",
     alt: "Birthday celebration",
     caption: "Last year's birthday party",
   },
   {
-    src: "/assets/image2.jpeg?height=400&width=600",
+    src: "/assets/image2.jpeg",
     alt: "Friends gathering",
     caption: "Weekend trip with friends",
   },
   {
-    src: "/assets/image3.jpeg?height=400&width=600",
+    src: "/assets/image3.jpeg",
     alt: "Special moment",
     caption: "That special day we'll never forget",
   },
   {
-    src: "/assets/image5.jpeg?height=400&width=600",
+    src: "/assets/image5.jpeg",
     alt: "Fun times",
     caption: "Just having fun together",
   },
   {
-    src: "/assets/image6.jpeg?height=400&width=600",
+    src: "/assets/image6.jpeg",
     alt: "Birthday celebration",
     caption: "Last year's birthday party",
   },
   {
-    src: "/assets/image7.jpeg?height=400&width=600",
+    src: "/assets/image7.jpeg",
     alt: "Friends gathering",
     caption: "Weekend trip with friends",
   },
   {
-    src: "/assets/image8.jpeg?height=400&width=600",
+    src: "/assets/image8.jpeg",
     alt: "Special moment",
     caption: "That special day we'll never forget",
   },
   {
-    src: "/assets/image9.jpeg?height=400&width=600",
+    src: "/assets/image9.jpeg",
     alt: "Fun times",
     caption: "Just having fun together",
   },
   {
-    src: "/assets/image23.jpeg?height=400&width=600",
+    src: "/assets/image23.jpeg",
     alt: "Birthday celebration",
     caption: "Last year's birthday party",
   },
   {
-    src: "/assets/image22.jpeg?height=400&width=600",
+    src: "/assets/image22.jpeg",
     alt: "Friends gathering",
     caption: "Weekend trip with friends",
   },
   {
-    src: "/assets/image15.jpeg?height=400&width=600",
+    src: "/assets/image15.jpeg",
     alt: "Special moment",
     caption: "That special day we'll never forget",
   },
   {
-    src: "/assets/image15.jpeg?height=400&width=600",
+    src: "/assets/image15.jpeg",
     alt: "Fun times",
     caption: "Just having fun together",
   },
@@ -104,10 +105,13 @@ export default function ImageCarousel() {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-            <img
-              src={images[current].src || "/placeholder.svg"}
+            <Image
+              src={images[current].src}
               alt={images[current].alt}
-              className="w-full h-full object-cover"
+              fill // Fills the parent container
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive sizes
+              priority={current === 0} // Prioritize loading the first image
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
 
@@ -158,4 +162,3 @@ export default function ImageCarousel() {
     </div>
   )
 }
-

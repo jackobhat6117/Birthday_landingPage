@@ -83,7 +83,12 @@ export default function MusicPlayer() {
   const [isMuted, setIsMuted] = useState(false)
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
-
+ // ✅ Preload Audio on Mount
+ useEffect(() => {
+  const audio = new Audio(songs[currentSongIndex].url)
+  audio.preload = "metadata" 
+  audioRef.current = audio
+}, [])
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
@@ -108,13 +113,17 @@ export default function MusicPlayer() {
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
-
+    // ✅ Use a Promise to Ensure Audio Loads Before Playing
+    audio.src = songs[currentSongIndex].url
+    audio.load()
     if (isPlaying) {
-      audio.play()
+      audio.src = songs[currentSongIndex].url; // ✅ Load only when playing
+      audio.load();
+      audio.play().catch((err) => console.error("Playback error:", err));
     } else {
-      audio.pause()
+      audio.pause();
     }
-  }, [isPlaying])
+  }, [isPlaying,currentSongIndex])
 
   useEffect(() => {
     const audio = audioRef.current
