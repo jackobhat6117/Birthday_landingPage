@@ -12,7 +12,7 @@ const songs = [
     id: 1,
     title: "Happy Birthday Song",
     artist: "Special Artist",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image8.jpeg",
     url: "/assets/audio/audio1.mp3",
     color: "from-pink-500 to-purple-600",
   },
@@ -20,7 +20,7 @@ const songs = [
     id: 2,
     title: "Our Special Song",
     artist: "Favorite Artist",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image21.jpeg",
     url: "/assets/audio/audio2.mp3",
     color: "from-purple-500 to-indigo-600",
   },
@@ -28,7 +28,7 @@ const songs = [
     id: 4,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image2.jpeg",
     url: "/assets/audio/audio3.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -36,7 +36,7 @@ const songs = [
     id: 5,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image3.jpeg",
     url: "/assets/audio/audio4.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -44,7 +44,7 @@ const songs = [
     id: 6,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image23.jpeg",
     url: "/assets/audio/audio5.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -52,7 +52,7 @@ const songs = [
     id: 7,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image19.jpeg",
     url: "/assets/audio/audio6.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -60,7 +60,7 @@ const songs = [
     id: 8,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image11.jpeg",
     url: "/assets/audio/audio7.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -68,7 +68,7 @@ const songs = [
     id: 9,
     title: "Memories",
     artist: "Love Songs",
-    cover: "/placeholder.svg?height=300&width=300",
+    cover: "/assets/image17.jpeg",
     url: "/assets/audio/audio8.mp3",
     color: "from-blue-500 to-purple-600",
   },
@@ -76,19 +76,35 @@ const songs = [
 
 export default function MusicPlayer() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false) // ✅ Disable autoplay initially
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(80)
   const [isMuted, setIsMuted] = useState(false)
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
- // ✅ Preload Audio on Mount
- useEffect(() => {
-  const audio = new Audio(songs[currentSongIndex].url)
-  audio.preload = "metadata" 
-  audioRef.current = audio
-}, [])
+
+  // ✅ Preload Audio on Mount
+  useEffect(() => {
+    const audio = new Audio(songs[currentSongIndex].url)
+    audio.preload = "metadata"
+    audioRef.current = audio
+  }, [])
+
+  // ✅ Handle Play/Pause
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    if (isPlaying) {
+      audio.src = songs[currentSongIndex].url
+      audio.play().catch((err) => console.error("Playback error:", err))
+    } else {
+      audio.pause()
+    }
+  }, [isPlaying, currentSongIndex])
+
+  // ✅ Update Progress and Duration
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
@@ -110,34 +126,8 @@ export default function MusicPlayer() {
     }
   }, [])
 
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    // ✅ Use a Promise to Ensure Audio Loads Before Playing
-    audio.src = songs[currentSongIndex].url
-    audio.load()
-    if (isPlaying) {
-      audio.src = songs[currentSongIndex].url; // ✅ Load only when playing
-      audio.load();
-      audio.play().catch((err) => console.error("Playback error:", err));
-    } else {
-      audio.pause();
-    }
-  }, [isPlaying,currentSongIndex])
-
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    audio.src = songs[currentSongIndex].url
-    audio.load()
-    if (isPlaying) {
-      audio.play()
-    }
-  }, [currentSongIndex])
-
   const handlePlayPause = () => {
-    setIsPlaying((prev) => !prev)
+    setIsPlaying((prev) => !prev) // ✅ Toggle play/pause
   }
 
   const handleNext = () => {
@@ -182,7 +172,7 @@ export default function MusicPlayer() {
 
       <div className="text-center mb-6">
         <h3 className="text-xl font-bold mb-2">Music For You</h3>
-        <p className="text-purple-300">Some special songs that remind me of you</p>
+        {/* <p className="text-purple-300">Some special songs that remind me of you</p> */}
       </div>
 
       <div className="grid md:grid-cols-[1fr_1.5fr] gap-6">

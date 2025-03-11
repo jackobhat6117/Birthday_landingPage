@@ -53,17 +53,17 @@ const images = [
     caption: "Last year's birthday party",
   },
   {
-    src: "/assets/image22.jpeg",
+    src: "/assets/image19.jpeg",
     alt: "Friends gathering",
     caption: "Weekend trip with friends",
   },
   {
-    src: "/assets/image15.jpeg",
+    src: "/assets/image21.jpeg",
     alt: "Special moment",
     caption: "That special day we'll never forget",
   },
   {
-    src: "/assets/image15.jpeg",
+    src: "/assets/image20.jpeg",
     alt: "Fun times",
     caption: "Just having fun together",
   },

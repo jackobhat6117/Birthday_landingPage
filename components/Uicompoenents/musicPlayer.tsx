@@ -19,28 +19,28 @@ const songs: Song[] = [
     title: "Happy Birthday",
     artist: "Birthday Classics",
     duration: 210, // 3:30
-    cover: "/placeholder.svg?height=80&width=80",
+    cover: "/assets/image3.jpeg",
     url: "/assets/audio1.mp3" // Add this line
   },
   {
     title: "Celebration",
     artist: "Party Mix",
     duration: 245, // 4:05
-    cover: "/placeholder.svg?height=80&width=80",
+    cover: "/assets/image8.jpeg",
     url: "/assets/audio/audio2.mp3" // Add this line
   },
   {
     title: "Good Vibes",
     artist: "Summer Hits",
     duration: 198, // 3:18
-    cover: "/placeholder.svg?height=80&width=80",
+    cover: "/assets/image7.jpeg",
     url: "/assets/audio/audio3.mp3" // Add this line
   },
   {
     title: "Special Day",
     artist: "Birthday Anthems",
     duration: 223, // 3:43
-    cover: "/placeholder.svg?height=80&width=80",
+    cover: "/assets/image3.jpeg",
     url: "/assets/audio/audio1.mp3" // Add this line
   },
 ]

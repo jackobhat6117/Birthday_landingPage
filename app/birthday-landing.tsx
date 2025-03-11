@@ -13,6 +13,8 @@ import ImageCarousel from "@/components/Uicompoenents/image-crousal"
 import WishCard from "@/components/Uicompoenents/wish-card"
 import MusicPlayer from "@/components/pages/musci-player"
 import confetti from "canvas-confetti"
+import SplashCursor from "@/components/Uicompoenents/splash-cursor"
+import ImageTrail from "@/components/Uicompoenents/image-trail"
 // import MusicPlayer from "@/components/music-player"
 // import ImageCarousel from "@/components/image-carousel"
 // import WishCard from "@/components/wish-card"
@@ -70,6 +72,23 @@ export default function BirthdayPage() {
         </div>
       </header>
 
+      {/* <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>
+                      <ImageTrail
+                        
+                        items={[
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          
+                          // ...
+                        ]}
+                        variant={1}
+                      />
+                    </div> */}
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div className="absolute inset-0 z-0">
@@ -101,6 +120,7 @@ export default function BirthdayPage() {
               }}
             >
               Happy Birthday!
+              <SplashCursor />
             </motion.h1>
 
             <motion.p
@@ -151,13 +171,17 @@ export default function BirthdayPage() {
           </motion.div>
 
           <motion.div
+          
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden bg-black/30 backdrop-blur-sm border border-white/10"
           >
-            <Canvas>
+                     
+         
+            
+          <Canvas>
               <ambientLight intensity={0.5} />
               <pointLight position={[10, 10, 10]} intensity={1} />
               <BirthdayCake position={[0, -1, 0]} />
@@ -167,6 +191,23 @@ export default function BirthdayPage() {
           </motion.div>
         </div>
       </section>
+                  {/* <div style={{ height: '500px', position: 'relative', overflow: 'hidden'}}>
+                      <ImageTrail
+                        
+                        items={[
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          'assets/image1.jpeg',
+                          
+                          // ...
+                        ]}
+                        variant={1}
+                      />
+                    </div> */}
+      
 
       {/* Image Carousel */}
       <section className="py-20 relative">
@@ -208,38 +249,39 @@ export default function BirthdayPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
             <WishCard
-              name="Sarah"
+              name="Eyob"
               message="Happy birthday to my favorite person! May your day be as special as you are."
               emoji="🎂"
               delay={0.1}
             />
             <WishCard
-              name="Michael"
+              name="Abenezer"
               message="Wishing you all the happiness in the world on your special day!"
               emoji="🎉"
               delay={0.2}
             />
             <WishCard
-              name="Jessica"
-              message="Another year older, another year wiser. Happy birthday, friend!"
+              name="Mathios"
+              message="Another year older, another year wiser. Happy birthday!"
               emoji="🎁"
               delay={0.3}
             />
             <WishCard
-              name="David"
+              name="Feven"
               message="May your birthday be the start of a year filled with good luck, good health, and much happiness."
               emoji="🥂"
               delay={0.4}
             />
             <WishCard
-              name="Emma"
+              name="Bereket"
               message="Sending you warm wishes on your birthday. Have a fantastic day!"
               emoji="🎈"
               delay={0.5}
             />
             <WishCard
-              name="John"
+              name="Ephrem"
               message="Happy birthday! May all your dreams and wishes come true."
               emoji="✨"
               delay={0.6}
@@ -274,6 +316,8 @@ export default function BirthdayPage() {
         </div>
       </section>
 
+      
+
       {/* Surprise Modal */}
       <AnimatePresence>
         {showSurprise && (
@@ -296,36 +340,59 @@ export default function BirthdayPage() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-pink-500 via-transparent to-transparent blur-xl"></div>
               </div>
 
-              <div className="relative z-10">
-                <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
-                  <Heart className="w-16 h-16 text-pink-500 mx-auto mb-4" />
-                </motion.div>
+              <div className="relative z-10 bg-black/80 p-6 rounded-lg text-center">
+      {/* Video Section */}
+      <motion.div 
+        initial={{ scale: 0.8, opacity: 0 }} 
+        animate={{ scale: 1, opacity: 1 }} 
+        transition={{ delay: 0.1 }}
+        className="w-full mb-6"
+      >
+        <video 
+          src="/assets/vedio/special-message.mp4" 
+          controls 
+          className="w-full max-w-lg mx-auto rounded-lg shadow-lg"
+        />
+      </motion.div>
 
-                <motion.h3
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-2xl font-bold mb-4"
-                >
-                  A Special Message For You
-                </motion.h3>
+      {/* Message Section */}
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }} 
+        animate={{ y: 0, opacity: 1 }} 
+        transition={{ delay: 0.2 }}
+      >
+        <Heart className="w-16 h-16 text-pink-500 mx-auto mb-4" />
+      </motion.div>
 
-                <motion.p
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="mb-6 text-gray-200"
-                >
-                  On this special day, I want you to know how much you mean to me. Your kindness, your smile, and your
-                  friendship make every day brighter. May this year bring you all the happiness you deserve.
-                </motion.p>
+      <motion.h3
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="text-2xl font-bold mb-4 text-white"
+      >
+        A Special Message For You
+      </motion.h3>
 
-                <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.8 }}>
-                  <Button onClick={() => setShowSurprise(false)} className="bg-white text-pink-900 hover:bg-gray-200">
-                    Close
-                  </Button>
-                </motion.div>
-              </div>
+      <motion.p
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="mb-6 text-gray-200"
+      >
+        On this special day, I would like to say Happy birthday. Your kindness, your smile, and your
+        friendship make every day brighter. May this year bring you all the happiness you deserve.
+      </motion.p>
+
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }} 
+        animate={{ y: 0, opacity: 1 }} 
+        transition={{ delay: 0.8 }}
+      >
+        <Button onClick={() => setShowSurprise(false)} className="bg-white text-pink-900 hover:bg-gray-200">
+          Close
+        </Button>
+      </motion.div>
+    </div>
             </motion.div>
           </motion.div>
         )}
